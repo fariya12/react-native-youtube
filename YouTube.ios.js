@@ -6,31 +6,32 @@ const RCTYouTube = requireNativeComponent('RCTYouTube', null);
 
 const parsePlayerParams = (props) => ({
   videoId: Array.isArray(props.videoIds) ? props.videoIds[0] : props.videoId,
-  playlistId: props.playlistId,
-  playerVars: {
-    // videoIds are split to videoId and playlist (comma separated videoIds).
-    // Also, looping a single video is unsupported by the iFrame player so we
-    // must load the video as a 2 videos playlist, as suggested here:
-    // https://developers.google.com/youtube/player_parameters#loop
-    // whether its a looped videoId or a looped single video in videoIds
-    playlist: Array.isArray(props.videoIds)
-      ? props.loop && !props.videoIds[1]
-        ? props.videoIds[0]
-        : props.videoIds.slice(1).toString() || undefined
-      : props.loop && props.videoId
-      ? props.videoId
-      : undefined,
+  showinfo: 0
+  // playlistId: props.playlistId,
+  // playerVars: {
+  //   // videoIds are split to videoId and playlist (comma separated videoIds).
+  //   // Also, looping a single video is unsupported by the iFrame player so we
+  //   // must load the video as a 2 videos playlist, as suggested here:
+  //   // https://developers.google.com/youtube/player_parameters#loop
+  //   // whether its a looped videoId or a looped single video in videoIds
+  //   playlist: Array.isArray(props.videoIds)
+  //     ? props.loop && !props.videoIds[1]
+  //       ? props.videoIds[0]
+  //       : props.videoIds.slice(1).toString() || undefined
+  //     : props.loop && props.videoId
+  //       ? props.videoId
+  //       : undefined,
 
-    // No need to explicitly pass positive or negative defaults
-    loop: props.loop === true ? 1 : undefined,
-    playsinline: props.fullscreen === true ? undefined : 1,
-    controls: props.controls,
-    fs: props.showFullscreenButton === false ? 0 : undefined,
-    showinfo: props.showinfo === false ? 0 : undefined,
-    modestbranding: props.modestbranding === true ? 1 : undefined,
-    rel: props.rel === false ? 0 : undefined,
-    origin: props.origin,
-  },
+  //   // No need to explicitly pass positive or negative defaults
+  //   loop: props.loop === true ? 1 : undefined,
+  //   playsinline: props.fullscreen === true ? undefined : 1,
+  //   controls: 1,
+  //   fs: props.showFullscreenButton === false ? 0 : undefined,
+  //   showinfo: props.showinfo === false ? 0 : undefined,
+  //   modestbranding: 1,
+  //   rel: props.rel === false ? 0 : undefined,
+  //   origin: props.origin,
+  // },
 });
 
 export default class YouTube extends React.Component {
